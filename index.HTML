@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quadrado Móvel</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    var x = canvas.width/2;
+    var y = canvas.height/2;
+    var squareSize = 50;
+
+    function drawSquare() {
+      ctx.fillStyle = "#0095DD";
+      ctx.fillRect(x, y, squareSize, squareSize);
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function moveSquare(dx, dy) {
+      x += dx;
+      y += dy;
+    }
+
+    function handleKeyDown(event) {
+      switch(event.keyCode) {
+        case 37: // left arrow
+          moveSquare(-10, 0);
+          break;
+        case 38: // up arrow
+          moveSquare(0, -10);
+          break;
+        case 39: // right arrow
+          moveSquare(10, 0);
+          break;
+        case 40: // down arrow
+          moveSquare(0, 10);
+          break;
+      }
+      clearCanvas();
+      drawSquare();
+    }
+
+    drawSquare();
+    document.addEventListener("keydown", handleKeyDown);
+  </script>
+</body>
+</html>
